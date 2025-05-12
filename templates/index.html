@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Cargar Archivo Excel{% endblock %}
+{% block header %}Cargar Archivo Excel{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 75vh;">
+  <div class="card shadow-lg border-0 p-4" style="width: 100%; max-width: 500px; border-radius: 1rem;">
+    <h4 class="text-center mb-4"><i class="fas fa-file-upload"></i> Subir Archivo Excel</h4>
+
+    <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data" novalidate>
+      <div class="mb-3">
+        <label for="file" class="form-label">Seleccionar archivo Excel (.xlsx, .xls)</label>
+        <input type="file" class="form-control" id="file" name="file" accept=".xlsx,.xls" required>
+      </div>
+
+      <div id="file-name" class="form-text text-muted mb-3"></div>
+
+      <!-- Mensajes para mostrar -->
+      <div id="loading" class="alert alert-info py-2" style="display: none;"><i class="fas fa-spinner fa-spin"></i> Cargando archivo...</div>
+      <div id="error" class="alert alert-danger py-2" style="display: none;"></div>
+      <div id="success" class="alert alert-success py-2" style="display: none;">Archivo cargado correctamente.</div>
+
+      <button type="submit" class="btn btn-primary w-100"><i class="fas fa-cloud-upload-alt"></i> Subir</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

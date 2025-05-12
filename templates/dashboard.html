@@ -1,0 +1,48 @@
+<!-- templates/dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Norma 43{% endblock %}
+{% block header %}Dashboard Norma 43{% endblock %}
+
+{% block content %}
+  {% if archivo_generado %}
+    <div class="alert alert-success">Archivo Norma 43 generado: <strong>{{ archivo_generado }}</strong></div>
+    <div class="text-end mb-3">
+      <a href="/download/{{ archivo_generado }}" class="btn btn-success">Descargar Norma 43</a>
+    </div>
+  {% endif %}
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="stat-card">
+        <h6>Total Filas</h6>
+        <p class="fw-bold">{{ df.shape[0] }}</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <h6>Total Importe</h6>
+        <p class="fw-bold">{{ df['Importe'].sum() if 'Importe' in df.columns else 'N/A' }}</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <h6>Columnas</h6>
+        <p class="fw-bold">{{ df.shape[1] }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card table-card">
+    <div class="card-header bg-primary text-white">Datos del archivo</div>
+    <div class="card-body table-responsive">
+      {{ full_table | safe }}
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  
+</script>
+{% endblock %}

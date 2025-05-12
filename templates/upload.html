@@ -1,0 +1,28 @@
+<!-- templates/upload.html -->
+{% extends "base.html" %}
+
+{% block title %}Subir Archivo{% endblock %}
+{% block header %}Subir Archivo Excel{% endblock %}
+
+{% block content %}
+  <div class="card p-4 shadow">
+    <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="file" class="form-label">Seleccionar Archivo Excel</label>
+        <input type="file" class="form-control" id="file" name="file" accept=".xlsx,.xls" required>
+      </div>
+      <div id="loading" style="display: none;">Cargando archivo...</div>
+      <div id="error" style="display: none;" class="text-danger"></div>
+      <div id="success" style="display: none;" class="text-success">Archivo cargado exitosamente.</div>
+      <button type="submit" class="btn btn-primary">Cargar</button>
+    </form>
+  </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  document.getElementById("upload-form").addEventListener("submit", function () {
+    document.getElementById("loading").style.display = "block";
+  });
+</script>
+{% endblock %}
