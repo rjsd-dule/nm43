@@ -1,6 +1,8 @@
 FROM python:3.11-slim
 
-# Instalar dependencias necesarias para pandas y otros paquetes
+# Evita buffering para ver print()s en tiempo real
+ENV PYTHONUNBUFFERED=1
+
 RUN apt-get update && apt-get install -y gcc libffi-dev build-essential
 
 WORKDIR /app
@@ -11,7 +13,4 @@ RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r re
 
 EXPOSE 5000
 
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
-
-CMD ["flask", "run"]
+CMD ["python", "app.py"]
