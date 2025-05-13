@@ -7,19 +7,24 @@ import os
 
 def handle_upload():
     deletefile()
+    print("#1")
     if 'file' not in request.files:
         return render_template('index.html', error="No se recibió archivo.")
 
     file = request.files['file']
+    print("#2")
     if file.filename == '':
         return render_template('index.html', error="Ningún archivo seleccionado.")
-
+    
+    print("#3")
     if not allowed_file(file.filename):
         return render_template('index.html', error="Tipo de archivo no permitido. Solo se aceptan archivos Excel.")
-
+    print("#4")
     df, output_path, error = process_uploaded_file(file, UPLOAD_FOLDER) # 2
     if error:
+        print(f"error > {error}")
         return render_template('index.html', error=error)
+    print("#5")
 
     page = request.args.get('page', 1, type=int)
     paginated_df, total_pages = paginate_df(df, page)

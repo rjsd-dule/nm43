@@ -109,7 +109,6 @@ def numheader(path_excel:str)-> int:
     file_header=None
     for i, fila in df_raw.iterrows():
         celda = str(fila[0]).strip().lower()  # solo la columna 0
-        print(celda)
         if "fecha" in celda:
             file_header = i
             print(f" A Fila encontrada con 'Fecha': índice {file_header}")

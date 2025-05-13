@@ -6,11 +6,10 @@ def analizar_df_mov(path_excel: str) -> list:
 
     file_header= numheader(path_excel)
 
-    print(f" numheader >> {file_header}")
+    print(f" numheader [{file_header}]")
     df = pd.read_excel(path_excel, skiprows=file_header) 
 
-    #print(df.head(5))
-    print(df.head(3))
+    #print(df.head(3))
 
     fila_count = 0
 
