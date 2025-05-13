@@ -7,9 +7,6 @@ def process_uploaded_file(file, upload_folder):
     filename = secure_filename(file.filename)
 
     filepath = os.path.join(upload_folder, filename)
-
-    print(f" upload_folder {upload_folder}")
-    print(f"filename {filename} > {file.filename}")
     
     try:
 
