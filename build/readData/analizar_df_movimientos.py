@@ -1,16 +1,14 @@
 import pandas as pd
-from build.formatModel.formatter import resolve_error_date,clave_Debe_Haber,zeros,numheader,dbFormater
+from build.formatModel.formatter import clave_Debe_Haber,zeros,numheader,dbFormater
 
 
 def analizar_df_mov(path_excel: str) -> list:
 
     file_header= numheader(path_excel)
 
-    print(f" numheader [{file_header}]")
     df = pd.read_excel(path_excel, skiprows=file_header) 
 
     #print(df.head(3))
-
     fila_count = 0
 
     movimientos = []

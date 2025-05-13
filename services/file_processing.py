@@ -2,6 +2,7 @@ import pandas as pd
 import os
 from werkzeug.utils import secure_filename
 from services.norma43 import generar_norma_43
+from build.formatModel.formatter import numheader
 
 def process_uploaded_file(file, upload_folder):
     filename = secure_filename(file.filename)
@@ -11,7 +12,10 @@ def process_uploaded_file(file, upload_folder):
     try:
 
         file.save(filepath)
-        df = pd.read_excel(filepath)
+        file_header= numheader(filepath)
+
+        df = pd.read_excel(filepath,skiprows=file_header)
+        df['Saldo total']=pd.to_numeric(df['Saldo total'],errors='coerce')
 
     except Exception as e:
         os.remove(filepath)
